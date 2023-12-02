@@ -17,6 +17,7 @@ public class Day02 {
 		Day02 day02 = new Day02();
 		Day02.solution(day02);
 		System.out.println("Solution 1: " + day02.getSolution1());
+		System.out.println("Solution 2: " + day02.getSolution2());
 	}
 
 	private static void solution(Day02 day02) {
@@ -25,14 +26,15 @@ public class Day02 {
 			in = new Scanner(new FileReader("./src/Day02/Day02.txt"));
 			while (in.hasNext()) {
 				sb = new StringBuilder().append(in.nextLine());
-				day02.setSolution1(day02.getSolution1() + checkSingleGame(sb.toString()));
+				day02.setSolution1(day02.getSolution1() + checkSingleGameSolution1(sb.toString()));
+				day02.setSolution2(day02.getSolution2() + checkSingleGameSolution2(sb.toString()));
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
 		}
 	}
 
-	private static int checkSingleGame(String string) {
+	private static int checkSingleGameSolution1(String string) {
 		int game = Integer.parseInt((string.split("Game ")[1].split(":")[0]));
 		string = string.split(":")[1].replace(",", "");
 
@@ -65,8 +67,40 @@ public class Day02 {
 				}
 			}
 		}
-		
-		if(checkCondition) { return game; } else { return 0; }
+
+		if (checkCondition) {
+			return game;
+		} else {
+			return 0;
+		}
+	}
+
+	private static int checkSingleGameSolution2(String string) {
+		string = string.split(":")[1].replace(",", "");
+
+		int valueBlue = 0, valueRed = 0, valueGreen = 0;
+
+		String[] showDices = string.split(";");
+		for (String string2 : showDices) {
+			string2 = string2.trim();
+			String[] check = string2.split(" ");
+			for (int i = 0; i < check.length; i++) {
+				if (!check[i].matches("\\d+")) {
+					int value = Integer.parseInt(check[i - 1]);
+					switch (check[i]) {
+					case "blue":
+						if (valueBlue < value) { valueBlue = value; }
+						break;
+					case "red":
+						if (valueRed < value) { valueRed = value; }
+						break;
+					case "green":
+						if (valueGreen < value) { valueGreen = value; }
+					}
+				}
+			}
+		}
+		return valueBlue * valueRed * valueGreen;
 	}
 
 	public int getSolution1() {
