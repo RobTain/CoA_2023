@@ -2,13 +2,16 @@ package Day03;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Day03 {
 	private int solution1 = 0;
 	private int solution2 = 0;
 	static Scanner in;
-	String[] input;
+
 
 
 	public static void main(String[] args) {
@@ -19,15 +22,16 @@ public class Day03 {
 	}
 
 	private static void solution(Day03 day03) {
-		StringBuilder sb = new StringBuilder();
+		LinkedList<String> input = new LinkedList<String>();
 		try {
 			in = new Scanner(new FileReader("./src/Day03/Day03.txt"));
+		
 			while (in.hasNext()) {
-				
-				sb = new StringBuilder().append(in.nextLine());
-				day03.setSolution1(day03.getSolution1() + method1(sb.toString()));
-				day03.setSolution2(day03.getSolution2() + method2(sb.toString()));
-			}
+				input.add(new StringBuilder().append(in.nextLine()).toString());
+				}
+			
+			day03.setSolution1(day03.getSolution1() + checkInput1(input));
+			day03.setSolution2(day03.getSolution2() + checkInput2(input));
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
 		} finally {
@@ -35,12 +39,12 @@ public class Day03 {
 		}
 	}
 
-	private static int method1(String string) {
+	private static int checkInput1(LinkedList<String> input) {
 	
 			return 0;
 	}
 
-	private static int method2(String string) {
+	private static int checkInput2(LinkedList<String> input) {
 		return 0;
 	}
 
