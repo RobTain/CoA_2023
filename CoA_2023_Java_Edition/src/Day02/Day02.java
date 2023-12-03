@@ -31,6 +31,8 @@ public class Day02 {
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
+		} finally {
+			in.close();
 		}
 	}
 

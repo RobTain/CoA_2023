@@ -8,6 +8,7 @@ public class Day03 {
 	private int solution1 = 0;
 	private int solution2 = 0;
 	static Scanner in;
+	String[] input;
 
 
 	public static void main(String[] args) {
@@ -22,12 +23,15 @@ public class Day03 {
 		try {
 			in = new Scanner(new FileReader("./src/Day03/Day03.txt"));
 			while (in.hasNext()) {
+				
 				sb = new StringBuilder().append(in.nextLine());
 				day03.setSolution1(day03.getSolution1() + method1(sb.toString()));
 				day03.setSolution2(day03.getSolution2() + method2(sb.toString()));
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
+		} finally {
+			in.close();
 		}
 	}
 
