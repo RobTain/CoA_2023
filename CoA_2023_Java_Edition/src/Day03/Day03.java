@@ -2,17 +2,13 @@ package Day03;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Day03 {
 	private int solution1 = 0;
 	private int solution2 = 0;
 	static Scanner in;
-
-
 
 	public static void main(String[] args) {
 		Day03 day03 = new Day03();
@@ -25,13 +21,14 @@ public class Day03 {
 		LinkedList<String> input = new LinkedList<String>();
 		try {
 			in = new Scanner(new FileReader("./src/Day03/Day03.txt"));
-		
+
 			while (in.hasNext()) {
 				input.add(new StringBuilder().append(in.nextLine()).toString());
-				}
-			
+			}
+
 			day03.setSolution1(day03.getSolution1() + checkInput1(input));
 			day03.setSolution2(day03.getSolution2() + checkInput2(input));
+
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
 		} finally {
@@ -40,8 +37,23 @@ public class Day03 {
 	}
 
 	private static int checkInput1(LinkedList<String> input) {
-	
-			return 0;
+		for (int i = 1; i < input.size(); i++) {
+			System.out.println(input.get(i));
+			
+			char[] line = input.get(i).toCharArray();
+			for (int j = 0; i < line.length; j++) {
+				// Check Condition
+				if (!(Character.isDigit(line[j]) || line[j] == '.')) {
+					// Check Top
+					if (Character.isDigit(input.get(i-1).charAt(j))) {
+						
+					}
+
+				}
+			}
+
+		}
+		return 0;
 	}
 
 	private static int checkInput2(LinkedList<String> input) {
