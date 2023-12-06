@@ -3,8 +3,12 @@ package Day05;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Day05 {
@@ -50,7 +54,34 @@ public class Day05 {
 		List<String> subListHumidity = createSubList(input, "temperature-to-humidity map:", "humidity-to-location map:");
 		List<String> subListLocation = createSubList(input, "humidity-to-location map:", null);
 		
-
+		for (String string : subListFertilizer) {
+			System.out.println(string);
+		}
+		
+		// Test
+		Map<Double, Double> test = new HashMap<>();
+		for (String string : subListFertilizer) {
+			String[] tmp = string.split(" ");
+			double source = Double.parseDouble(tmp[1]);
+			double destination = Double.parseDouble(tmp[0]);
+			for (double i = 0; i < Double.parseDouble(tmp[2]); i++) {
+				test.put(source, destination);
+				source++;
+				destination++;
+			}
+		}
+        
+        //fill map with additional values
+        for (double d = Arrays.stream(seeds).min().getAsDouble(); d <=  Arrays.stream(seeds).max().getAsDouble(); d++) {
+        	if (!test.containsKey(d)) {
+        		test.put(d, d);
+        	}
+        }
+		
+        for (Double i : test.keySet()) {
+            System.out.println(i + " - " + test.get(i));
+		}
+		
 		return 0;
 	}
 
