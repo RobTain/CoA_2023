@@ -3,6 +3,7 @@ package Day07;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Day07 {
@@ -11,45 +12,40 @@ public class Day07 {
 	static Scanner in;
 
 
+
 	public static void main(String[] args) {
 		Day07 day07 = new Day07();
 		Day07.solution(day07);
 		System.out.println("Solution 1: " + day07.getSolution1());
+		System.out.println("Solution 2: " + day07.getSolution2());
 	}
 
 	private static void solution(Day07 day07) {
 		StringBuilder sb = new StringBuilder();
 		try {
-			in = new Scanner(new FileReader("./src/Day04/Day04.txt"));
+			in = new Scanner(new FileReader("./src/Day07/Day07.txt"));
 			while (in.hasNext()) {
 				sb = new StringBuilder().append(in.nextLine());
-				day07.setSolution1(day07.getSolution1() + checkSingleCard1(sb.toString()));
+				day07.setSolution1(day07.getSolution1() + checkSingleLine1(sb.toString()));
+				day07.setSolution2(day07.getSolution2() + checkSingleLine2(sb.toString()));
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("File not Found");
 		} finally {
 			in.close();
 		}
+		
 	}
 
-	private static int checkSingleCard1(String string) {
 
-		int[] winningNumbers = Arrays.stream(string.split(" \\| ")[0].split(": ")[1]
-				.replace("  ", " ").stripLeading().split(" ")).mapToInt(Integer::parseInt).toArray();
-		int[] randomNumbers = Arrays.stream(string.split(" \\| ")[1]
-				.replace("  ", " ").stripLeading().split(" ")).mapToInt(Integer::parseInt).toArray();
-
-		int count = 0;
+	private static int checkSingleLine1(String string) {
 		
-		for (int i = 0; i < winningNumbers.length; i++) {
-			for (int j = 0; j < randomNumbers.length; j++) {
-				if (winningNumbers[i] == randomNumbers[j]) {
-					if (count == 0) { count++; } else { count *= 2; }
-					break;
-				}
-			}
-		}	
-		return count;
+		return 0;
+	}
+	
+	private static int checkSingleLine2(String string) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public int getSolution1() {
@@ -69,3 +65,5 @@ public class Day07 {
 	}
 
 }
+
+
